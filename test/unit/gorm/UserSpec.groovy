@@ -9,12 +9,31 @@ import spock.lang.Specification
 @TestFor(User)
 class UserSpec extends Specification {
 
-    def setup() {
+    void "usuariovalido"() {
+        when:
+        def Sergio = new User(
+                name: 'Esteban',
+                lastname: 'Gabalan',
+                age: 44,
+                username: 'sumadresama',
+                password: 'Qwerty12345'
+        )
+        then:
+        Sergio.validate()
+    }
+    void "usuarioinvalido"() {
+        when:
+        def David = new User(
+                name: null,
+                lastname: 'ui',
+                age: 9,
+                username: 'sumadresama',
+                password: 'hola'
+        )
+        then:
+        !David.validate()
+
     }
 
-    def cleanup() {
-    }
 
-    void "test something"() {
-    }
 }
