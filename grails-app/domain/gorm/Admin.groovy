@@ -8,4 +8,11 @@ class Admin extends User{
         level(nullable: false, range: 1..5)
         rating(nullable: false, range: 1.0..100.0)
     }
+
+    static hasMany = [forums : Forum]
+
+    static mapping = {
+        sort "level"
+        //sort level: "asc"
+    }
 }

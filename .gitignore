@@ -45,7 +45,7 @@
 .idea/
 .idea/misc.xml
 .idea/workspace.xml
-AppForoGrails.iml
+Gorm.iml
 # if you remove the above rule, at least ignore the following:
 
 # User-specific stuff:
