@@ -18,5 +18,10 @@ class User {
 
     }
 
+    static mapping = {
+
+        tablePerHierarchy true
+
+    }
 
 }
