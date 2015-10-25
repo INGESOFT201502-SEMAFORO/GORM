@@ -7,7 +7,7 @@ class Forum {
     String category
     Date fecha = new Date();
 
-    static belongsTo = [post:Post]
+    static hasMany = [post:Post]
 
     static constraints = {
         name size: 3..20, unique: true, blank: false, nullable: false
