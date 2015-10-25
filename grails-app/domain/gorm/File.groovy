@@ -6,6 +6,12 @@ class File {
     Byte [] content
     Double size
 
+    static belongsTo = [post: Post]
+
+    static mapping = {
+        post column: 'post_belongs_id'
+    }
+
     static constraints = {
         fileType(blank: false, nullable: false, matches: /.+\/.+/)
         // el archivo no deberia contener mas de 10 MB, y al menos un byte (no vacío)
