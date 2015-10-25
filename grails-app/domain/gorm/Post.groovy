@@ -3,16 +3,14 @@ package gorm
 class Post {
 
     String topic
-    //Date dateCreated
-    //Date lastUpdate
-
-
+    Date dateCreated
+    Date lastUpdate
 
     static constraints = {
 
         topic (blank: false, size: 3..50)
-        //dateCreated (min:new Date())
-        //lastUpdate (min:new Date())
+        //dateCreated (min: new Date())
+        //lastUpdate (min: new Date())
         //ArrayList<String> comments
     }
 
@@ -38,7 +36,5 @@ class Post {
     //lastUpdate = new Date()
 
     //}
-
-
 
 }
