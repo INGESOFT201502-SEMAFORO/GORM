@@ -1,6 +1,5 @@
 package gorm
 
-import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
@@ -10,16 +9,12 @@ import spock.lang.Specification
 @TestFor(Post)
 class PostSpec extends Specification {
 
-    void "error number 1"(){
-        when:
-
-        def postBueno = new Post(
-                topic: 'pt'
-                //dateCreated: new Date(2016,11,19)
-        )
-
-        then:
-        !postBueno.validate()
+    def setup() {
     }
 
+    def cleanup() {
+    }
+
+    void "test something"() {
+    }
 }
