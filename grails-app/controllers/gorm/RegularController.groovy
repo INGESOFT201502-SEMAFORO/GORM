@@ -1,4 +1,7 @@
 package gorm
+
+
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -8,7 +11,8 @@ class RegularController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        render Regular.list()
+        params.max = Math.min(max ?: 10, 100)
+        respond Regular.list(params), model:[regularInstanceCount: Regular.count()]
     }
 
     def show(Regular regularInstance) {
@@ -27,7 +31,7 @@ class RegularController {
         }
 
         if (regularInstance.hasErrors()) {
-            println regularInstance.errors
+            respond regularInstance.errors, view:'create'
             return
         }
 
@@ -89,7 +93,6 @@ class RegularController {
     }
 
     protected void notFound() {
-        println 'Regular instance with id = $params.id not found'
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'regular.label', default: 'Regular'), params.id])
@@ -106,5 +109,4 @@ class RegularController {
     def afterInterceptor = {
         println "Se ha ejecutado la accion: $actionName"
     }
-
 }

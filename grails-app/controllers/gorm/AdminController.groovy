@@ -1,5 +1,7 @@
 package gorm
 
+
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -9,7 +11,8 @@ class AdminController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        render Admin.list()
+        params.max = Math.min(max ?: 10, 100)
+        respond Admin.list(params), model:[adminInstanceCount: Admin.count()]
     }
 
     def show(Admin adminInstance) {
@@ -28,7 +31,7 @@ class AdminController {
         }
 
         if (adminInstance.hasErrors()) {
-            println adminInstance.errors
+            respond adminInstance.errors, view:'create'
             return
         }
 
@@ -55,7 +58,6 @@ class AdminController {
         }
 
         if (adminInstance.hasErrors()) {
-            println adminInstance.errors
             respond adminInstance.errors, view:'edit'
             return
         }
@@ -91,7 +93,6 @@ class AdminController {
     }
 
     protected void notFound() {
-        println 'Admin instance with id = $params.id not found'
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'admin.label', default: 'Admin'), params.id])
@@ -108,5 +109,4 @@ class AdminController {
     def afterInterceptor = {
         println "Se ha ejecutado la accion: $actionName"
     }
-
 }
