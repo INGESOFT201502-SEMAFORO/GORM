@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title><g:if env="development">Grails Runtime Exception</g:if><g:else>Error</g:else></title>
-		<meta name="layout" content="main">
+		<meta name="layout" content="main2">
 		<g:if env="development"><asset:stylesheet src="errors.css"/></g:if>
 	</head>
 	<body>
@@ -14,5 +14,10 @@
 				<li>An error has occurred</li>
 			</ul>
 		</g:else>
+
+	<div>
+		<h2>Lo Sentimos, La pagina solicitada no existe!</h2>
+		<asset:image src="warning.png"/>
+	</div>
 	</body>
 </html>
